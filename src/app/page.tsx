@@ -1,80 +1,59 @@
-// /app/page.tsx
-import ScreenTitle from "@/components/screen-title";
+// src/app/page.tsx
 import CardLink from "@/components/card-link";
+
+const supportTools = [
+  {
+    href: "/routine/morning",
+    title: "Morning",
+    description: "Start the day one step at a time.",
+    emoji: "🌤️",
+    tone: "sun" as const,
+  },
+  {
+    href: "/calm-corner",
+    title: "Calm",
+    description: "Breathing, grounding, and reset tools.",
+    emoji: "😌",
+    tone: "mint" as const,
+  },
+  {
+    href: "/routine/bedtime",
+    title: "Bedtime",
+    description: "A soft wind-down before sleep.",
+    emoji: "🌙",
+    tone: "lav" as const,
+  },
+  {
+    href: "/rewards",
+    title: "Rewards",
+    description: "Celebrate effort without pressure.",
+    emoji: "⭐",
+    tone: "rose" as const,
+  },
+];
 
 export default function HomePage() {
   return (
-    <div className="space-y-5">
-      <ScreenTitle
-        title="What do we need today?"
-        subtitle="Choose the kind of support you need right now."
-        centered
-      />
-
-      <section aria-label="Support tools" className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
-          <CardLink
-            href="/routine/morning"
-            title="Morning Routine"
-            description="Gentle step-by-step start to the day"
-            emoji="🌤️"
-            tone="sun"
-          />
-
-          <CardLink
-            href="/calm-corner"
-            title="Calm Corner"
-            description="Simple calming tools and guided support"
-            emoji="😌"
-            tone="mint"
-          />
-
-          <CardLink
-            href="/routine/bedtime"
-            title="Bedtime"
-            description="Soft, predictable wind-down routine"
-            emoji="🌙"
-            tone="rose"
-          />
-
-          <CardLink
-            href="/rewards"
-            title="Rewards"
-            description="Celebrate progress without pressure"
-            emoji="⭐"
-            tone="lav"
-          />
-        </div>
+    <main className="space-y-5">
+      <section className="space-y-1.5">
+        <h1 className="page-title">What do you need?</h1>
+        <p className="page-subtitle">Choose one gentle support path.</p>
       </section>
 
-      <section aria-labelledby="coming-soon" className="space-y-3">
-        <h2
-          id="coming-soon"
-          className="text-sm font-medium text-muted-foreground"
-        >
-          Coming soon
-        </h2>
-
+      <section aria-label="Support tools">
         <div className="grid grid-cols-2 gap-3">
-          <CardLink
-            href="/after-school"
-            title="After School Reset"
-            description="Unwind and transition after the day"
-            emoji="🎒"
-            disabled
-            tone="sky"
-          />
-
-          <CardLink
-            href="/weekend"
-            title="Weekend Activity"
-            description="Low-pressure ideas for unstructured time"
-            emoji="🌻"
-            disabled
-            tone="sun"
-          />
+          {supportTools.map((tool) => (
+            <CardLink
+              key={tool.href}
+              href={tool.href}
+              title={tool.title}
+              description={tool.description}
+              emoji={tool.emoji}
+              tone={tool.tone}
+            />
+          ))}
         </div>
       </section>
-    </div>
+    </main>
   );
 }
